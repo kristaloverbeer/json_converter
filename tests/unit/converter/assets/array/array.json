@@ -1,0 +1,19 @@
+[
+  {
+    "id": 0,
+    "email": "johndoe@gmail.com",
+    "tags": [
+      "consectetur",
+      "quis"
+    ]
+  },
+  {
+    "id": 1,
+    "email": "luckyluke@gmail.fr",
+    "tags": [
+      "veniam",
+      "elit",
+      "mollit"
+    ]
+  }
+]
