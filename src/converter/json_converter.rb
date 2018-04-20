@@ -1,19 +1,16 @@
 require 'json'
 require 'csv'
 
+require_relative '../../src/io/json_io'
+require_relative '../../src/io/csv_io'
+
 
 class JsonConverter
   def to_csv(json_path, csv_path)
-    serialized_json = read_json(json_path)
-    flattened_hash = flatten_json(serialized_json)
+    serialized_json = JsonIO.new(json_path).read
+    flattened_array = flatten_json(serialized_json)
 
-    CSV.open(csv_path, 'w') do |csv|
-      csv << flattened_hash[0].keys
-      for record in flattened_hash
-        csv << record.values
-      end
-    end
-
+    CsvIO.new(csv_path).write(flattened_array)
   end
 
   def flatten_json(raw_json)
@@ -45,10 +42,5 @@ class JsonConverter
     return hash_result
   end
 
-  def read_json(json_path)
-    serialized_json = JSON.parse(File.read(json_path))
-    return serialized_json
-  end
-
-  private :read_json, :flatten_hash, :flatten_json
+  private :flatten_hash, :flatten_json
 end
